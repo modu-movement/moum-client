@@ -1,12 +1,26 @@
 import * as ImagePicker from 'expo-image-picker';
-import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useNavigation, useRouter } from "expo-router";
+import { useLayoutEffect, useState } from "react";
 import { Image, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, TextInput, TouchableWithoutFeedback, View, ScrollView, Text, TouchableOpacity } from "react-native";
+import { format } from 'date-fns';
 
 export default function NewRecordPage() {
   const router = useRouter();
+  const navigation = useNavigation();
   const [image, setImage] = useState<string | null>(null);
   const [memo, setMemo] = useState('');
+
+  useLayoutEffect(() => {
+    const today = format(new Date(), 'yyyy년 M월 d일');
+    navigation.setOptions({
+      title: today,
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.goBack()} style={{paddingHorizontal: 16}}>
+          <Text>뒤로가기</Text>
+        </TouchableOpacity>
+      )
+    });
+  }, [navigation]);
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
