@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
-import { useState } from "react";
+import { router, useNavigation } from "expo-router";
+import { useLayoutEffect, useState } from "react";
 import { StyleSheet, Text, Image, View, Dimensions, TouchableOpacity, Button } from "react-native";
 import {Calendar} from "react-native-calendars";
 
@@ -70,10 +70,6 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      {/* Header 컴포넌트 */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>기록</Text>
-      </View>
       {/* Calendar 컴포넌트 */}
       <Calendar
         style={styles.calendar}
@@ -122,6 +118,7 @@ export default function Index() {
         }
         }
       />
+      <View style={{height: 1, backgroundColor: '#ccc', marginVertical: 10, marginHorizontal: 20}}></View>
       {/* AddButton 컴포넌트 */}
       <TouchableOpacity style={styles.recordButton} onPress={() => router.push("../new-record")}>
         <Text style={styles.recordButtonText}>+ 기록하기</Text>
@@ -133,15 +130,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "violet",
-  },
-  header: {
-    height: 80,
-    backgroundColor: "yellow",
-    justifyContent: "flex-end", // 타이틀을 헤더 아래쪽에 배치
-    shadowColor: "#000",
-    paddingHorizontal: 16,
-    paddingBottom: 20, // 아래쪽 여백 추가
+    backgroundColor: "white",
   },
   calendar: {
     width: '100%'
@@ -178,8 +167,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 2,
   },
-  photo: { width: 36, height: 36, borderRadius: 5 },
-  emptyBox: { width: 36, height: 36, backgroundColor: "#EEE", borderRadius: 5 },
+  photo: { width: 40, height: 40, borderRadius: 5 },
+  emptyBox: { width: 40, height: 40, backgroundColor: "#EEE", borderRadius: 5 },
   addButton: {
 
   },
@@ -203,18 +192,18 @@ const styles = StyleSheet.create({
     marginVertical: 16,
     paddingVertical: 16,
     borderRadius: 12,
-    backgroundColor: "#F2F2F2",
+    backgroundColor: "black",
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3, // 안드로이드 그림자
+    // shadowColor: "#000",
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.1,
+    // shadowRadius: 4,
+    // elevation: 3, // 안드로이드 그림자
   },
   recordButtonText: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#999",
+    color: "white",
   },  
 })

@@ -5,7 +5,10 @@ import React from 'react';
 
 export default function TabLayout() {
   return (
-    <Tabs>
+    <Tabs screenOptions={{
+      tabBarActiveTintColor: "black",
+      tabBarInactiveTintColor: "gray",
+    }}>
       <Tabs.Screen
         name="explore"
         options={{
@@ -23,7 +26,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: '기록',
-          headerShown: false,
+          headerTitleAlign: "left",
           tabBarIcon: ({focused}) => (
             <Feather
               name='calendar'
