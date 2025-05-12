@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, Text, Image, View, Dimensions, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, Image, View, Dimensions, TouchableOpacity, Button } from "react-native";
 import {Calendar} from "react-native-calendars";
 
 // MarkedDate 인터페이스 정의
@@ -122,8 +123,8 @@ export default function Index() {
         }
       />
       {/* AddButton 컴포넌트 */}
-      <TouchableOpacity style={styles.addButton}>
-        <Text style={styles.addButtonText}>+ 기록하기</Text>
+      <TouchableOpacity style={styles.recordButton} onPress={() => router.push("../new-record")}>
+        <Text style={styles.recordButtonText}>+ 기록하기</Text>
       </TouchableOpacity>
     </View>
   )
@@ -197,7 +198,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-
-
-
+  recordButton: {
+    marginHorizontal: 20,
+    marginVertical: 16,
+    paddingVertical: 16,
+    borderRadius: 12,
+    backgroundColor: "#F2F2F2",
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3, // 안드로이드 그림자
+  },
+  recordButtonText: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#999",
+  },  
 })
